@@ -1,5 +1,15 @@
 - name: Update apt
   apt: update_cache=yes
 
-- name: Install Apache
-  apt: name=apache2 state=latest
+- name: Install System Packages
+  apt: pkg={{ item }} state=latest
+  with_items: "{{ system.packages }}"
+
+- name: Configure the timezone
+  lineinfile: dest=/etc/timezone regexp=^ line="{{ system.timezone }}"
+
+- name: More Configure the timezone
+  file: src=/usr/share/zoneinfo/{{system.timezone}} dest=/etc/localtime state=link force=yes backup=yes
+
+- name: Set default system language pack
+  shell: locale-gen {{ system.locale }}

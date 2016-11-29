@@ -1,0 +1,5 @@
+system:
+  timezone: Europe/London
+  locale: en_US.UTF-8
+  packages:
+    - apache2

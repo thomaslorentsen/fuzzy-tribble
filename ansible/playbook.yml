@@ -1,7 +1,7 @@
 ---
 - hosts: all
   become: true
-  vars:
-    doc_root: /var/www/example
+  vars_files:
+    - vars/all.yml
   roles:
     - common
