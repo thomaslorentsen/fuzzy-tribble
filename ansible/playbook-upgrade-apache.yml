@@ -1,0 +1,25 @@
+---
+- hosts: all
+  become: true
+  become_method: sudo
+  vars:
+    httpd:
+      release: 55.el6.centos.2
+  tasks:
+    - name: Upgrade HTTPD
+      yum:
+        name: httpd-2.2.15-{{ httpd.release }}
+        state: present
+    - name: Upgrade HTTPD Tools
+      yum:
+        name: httpd-tools-2.2.15-{{ httpd.release }}
+        state: present
+    - name: Upgrade mod SSL
+      yum:
+        name: mod_ssl-2.2.15-{{ httpd.release }}
+        state: present
+      notify:
+        - restart apache
+  handlers:
+    - name: restart apache
+      service: name=httpd state=restarted

@@ -1,0 +1,8 @@
+- name: Install Nginx
+  apt: pkg=nginx state=latest
+
+- name: Delete default config
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Install vhost
+  template: src=default.tpl dest=/etc/nginx/sites-enabled/website

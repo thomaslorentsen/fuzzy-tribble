@@ -1,8 +1,9 @@
 ---
-- hosts: all
+- hosts: tribble
   become: true
   become_method: sudo
   vars_files:
     - vars/all.yml
   roles:
     - common
+    - nginx

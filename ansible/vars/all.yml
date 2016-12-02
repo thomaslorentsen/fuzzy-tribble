@@ -3,3 +3,6 @@ system:
   locale: en_US.UTF-8
   packages:
     - apache2
+    - nano
+nginx:
+  domain: example.com
